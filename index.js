@@ -157,12 +157,18 @@ class Instructor extends Lambdasian {
   }
 
   changeGrade(student) {
-    const max = 100;
+    let max = 100;
     const min = 1;
-    const randomInt = Math.floor(Math.random() * Math.floor(max));
     const plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-    student.grade += (randomInt * plusOrMinus);
-    student.grade = Math.min(Math.max(student.grade, min), max);
+    if (plusOrMinus === -1) {
+      max = student.grade;
+    } else {
+      max -= student.grade;
+    }
+    const randomNum = Math.floor(Math.random() * (max - min)) + min;
+    console.log(`student grade: ${student.grade}`);
+    console.log(`random num: ${randomNum}`);
+    student.grade += (randomNum) * plusOrMinus;
   }
 }
 
@@ -241,6 +247,32 @@ class ProjectManager extends Instructor {
   debugsCode(student, subject) {
     return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
+}
+
+const fabricio = new Student({
+  name: 'Fabricio Bezerra',
+  age: 30,
+  location: 'Las Vegas',
+  previousBackground: 'Musician',
+  className: 'Web28',
+  favSubjects: ['HTML', 'CSS', 'Javascript']
+});
+
+const michael = new Instructor({
+  name: 'Michael Scott',
+  age: 40,
+  location: 'Scranton',
+  specialty: 'Management',
+  favLanguage: 'C',
+  catchPhrase: 'This is my catchphase'
+});
+
+console.log(fabricio.grade);
+
+for(let i=0; i<10; i++) {
+  michael.changeGrade(fabricio);
+  console.log(fabricio.grade);
+  console.log(fabricio.graduate());
 }
 
 
