@@ -155,6 +155,15 @@ class Instructor extends Lambdasian {
   grade(student, subject) {
     return `${student.name} receives a perfect score on ${subject}`;
   }
+
+  changeGrade(student) {
+    const max = 100;
+    const min = 1;
+    const randomInt = Math.floor(Math.random() * Math.floor(max));
+    const plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+    student.grade += (randomInt * plusOrMinus);
+    student.grade = Math.min(Math.max(student.grade, min), max);
+  }
 }
 
 /*
