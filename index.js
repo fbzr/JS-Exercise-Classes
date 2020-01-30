@@ -208,8 +208,9 @@ class Student extends Lambdasian {
 
   graduate() {
     if (this.grade > 70) {
-      console.log(`${this.name} is graduated`);
+      return `${this.name} is graduated`;
     }
+    return `${this.name} needs a better grade`;
   }
 }
 
@@ -241,6 +242,7 @@ class ProjectManager extends Instructor {
     return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 }
+
 
 /*
   STRETCH PROBLEM (no tests!)
